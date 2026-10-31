@@ -1,0 +1,285 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 35px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: #080b16;
+    background-image:
+        radial-gradient(circle at top left, #25104b, transparent 40%),
+        radial-gradient(circle at bottom right, #071f3d, transparent 40%);
+}
+
+/* Main game area */
+
+#UI {
+    width: 100%;
+    max-width: 850px;
+    padding: 35px;
+    text-align: center;
+    background: #111629;
+    border: 1px solid #343c5b;
+    border-radius: 25px;
+    box-shadow: 0 0 40px #5b21b633;
+}
+
+/* Game heading */
+
+.top-label {
+    color: #facc15;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+h1 {
+    margin: 18px 0 10px;
+    font-size: clamp(25px, 5vw, 43px);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 span {
+    color: #38bdf8;
+}
+
+.subtitle {
+    color: #a6b0ca;
+    font-size: 14px;
+}
+
+/* Players */
+
+.battle-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 35px 0;
+}
+
+.player {
+    flex: 1;
+    max-width: 230px;
+    padding: 20px 10px;
+    background: #1a2138;
+    border: 1px solid #353e5d;
+    border-radius: 18px;
+}
+
+.player-icon {
+    font-size: 45px;
+}
+
+.player h2 {
+    margin: 12px 0 5px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.player p {
+    margin-bottom: 0;
+    color: #9ca9c8;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.versus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    color: #080b16;
+    font-weight: 900;
+    background: #facc15;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #facc1566;
+}
+
+/* Results and score */
+
+#outputbox {
+    min-height: 155px;
+    padding: 20px;
+    margin: 25px 0;
+    line-height: 1.7;
+    background: #090d1a;
+    border: 1px solid #293653;
+    border-radius: 16px;
+    box-shadow: inset 0 0 20px #0005;
+}
+
+#outputbox p {
+    margin: 5px 0;
+    color: #cbd5e1;
+}
+
+#outputbox h2 {
+    color: #facc15;
+    font-size: 21px;
+    line-height: 1.5;
+}
+
+.instruction {
+    margin-top: 15px !important;
+    color: #38bdf8 !important;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Weapon selection */
+
+.choice-heading {
+    margin: 35px 0 20px;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 200px;
+    min-height: 175px;
+    padding: 20px 10px;
+    color: white;
+    background: #1a2138;
+    border: 2px solid #354263;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s,
+                border-color 0.2s, box-shadow 0.2s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-8px) scale(1.03);
+    background: #242e4d;
+    border-color: #38bdf8;
+    box-shadow: 0 0 25px #38bdf833;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.weapon {
+    font-size: 48px;
+}
+
+.weapon-name {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.weapon-description {
+    color: #9ca9c8;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* Disabled buttons after the game ends */
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #29334d;
+}
+
+footer p {
+    color: #facc15;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+footer .footer-small {
+    color: #7f8ba8;
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+/* Small screens */
+
+@media (max-width: 550px) {
+    #UI {
+        padding: 22px 15px;
+    }
+
+    .battle-info {
+        gap: 10px;
+    }
+
+    .player {
+        padding: 15px 5px;
+    }
+
+    .player-icon {
+        font-size: 35px;
+    }
+
+    .player h2 {
+        font-size: 13px;
+    }
+
+    .versus {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    #buttons {
+        gap: 10px;
+    }
+
+    button {
+        min-height: 140px;
+        padding: 12px 5px;
+        border-radius: 14px;
+    }
+
+    .weapon {
+        font-size: 35px;
+    }
+
+    .weapon-name {
+        font-size: 12px;
+    }
+
+    .weapon-description {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .choice-heading {
+        font-size: 13px;
+    }
+}

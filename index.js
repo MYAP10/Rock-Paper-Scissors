@@ -1,110 +1,76 @@
+
 function getComputerChoice() {
-    const ComputerChoiceNumber = Math.floor(Math.random() * 3)
-    let ComputerChoice = "" ;
-    switch (ComputerChoiceNumber) {
-        case 1 : 
-        ComputerChoice = "rock"
-        break;
-        case 2 : 
-        ComputerChoice = "paper"
-        break;
-        default :
-        ComputerChoice = "scissors"
+    const computerChoiceNumber = Math.floor(Math.random() * 3);
+
+    switch (computerChoiceNumber) {
+        case 0:
+            return "rock";
+        case 1:
+            return "paper";
+        default:
+            return "scissors";
     }
-    return ComputerChoice ;
 }
 
-function getHumanChoice() {
-    let Choice = prompt("What will you choice Rock , Paper , Scissors") ;
-     return Choice.trim().toLowerCase();  
-}
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const outputbox = document.getElementById("outputbox");
 
-let humanScore = 0 ;
-let computerScore = 0 ;
-
+let humanScore = 0;
+let computerScore = 0;
+let gameOver = false;
 
 function playRound(humanSelection, computerSelection) {
-    if (humanChoice ==="rock" && computerChoice ==="rock") {
-        console.log("It is a draw! Both have choice ROCK") ;
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}   else if (humanChoice ==='paper' && computerChoice ==='paper') {
-        console.log("It is a draw! Both have choice PAPER");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}   else if (humanChoice ==='scissors' && computerChoice ==='scissors') {
-        console.log("It is a draw! Both have choice SCISSORS");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}   else if (humanChoice ==='rock' && computerChoice ==='paper'){
-        computerScore = computerScore + 1 ;
-        console.log("You lose! Paper beats Rock");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}    else if (humanChoice ==='rock' && computerChoice ==='scissors'){
-        humanScore = humanScore + 1 ;
-        console.log("You won! Rock beats Scissors");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}    else if (humanChoice ==='paper' && computerChoice ==='rock'){
-        humanScore = humanScore + 1 ;
-        console.log("You won! Paper beats Rock");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}    else if (humanChoice ==='paper' && computerChoice ==='scissors'){
-        computerScore = computerScore + 1 ;
-        console.log("You lose! Scissors beats Paper");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}    else if (humanChoice ==='scissors' && computerChoice ==='rock'){
-        computerScore = computerScore + 1 ;
-        console.log("You lose! Rock beats Scissors");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}   else if (humanChoice ==='scissors' && computerChoice ==='paper') {
-        humanScore = humanScore + 1 ;
-        console.log("You won! Scissors beats Paper");
-        console.log(`Computer =${computerChoice}`);
-        console.log(` Agent 47 =${humanChoice}`);
-        console.log(`ComputerScore =${computerScore}`);
-        console.log(`HumanScore = ${humanScore}`);
-}    else {
-        console.log(" Try again! you have make a spelling mistake ;)")
-}
-return getComputerChoice ;
-}
+    if (gameOver) return;
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+    let result = "";
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
-        playRound();
-    }
-    if (humanScore > computerScore) {
-        alert(" Congratulations!!!! You have won the game")
+    if (humanSelection === computerSelection) {
+        result = "It's a draw!";
+    } else if (
+        (humanSelection === "rock" && computerSelection === "scissors") ||
+        (humanSelection === "paper" && computerSelection === "rock") ||
+        (humanSelection === "scissors" && computerSelection === "paper")
+    ) {
+        humanScore++;
+        result = "You won this round!";
     } else {
-        alert(" Mission failed!! You lose the game, try again :]")
+        computerScore++;
+        result = "You lost this round!";
     }
-    alert("Game Over! , Start new game by Refreshing the page.")
+
+    outputbox.innerHTML = `
+        <p>${result}</p>
+        <p>You chose: ${humanSelection}</p>
+        <p>Computer chose: ${computerSelection}</p>
+        <p>Human Score: ${humanScore}</p>
+        <p>Computer Score: ${computerScore}</p>
+    `;
+
+    if (humanScore === 5) {
+        outputbox.innerHTML += "<h2>Congratulations! You won the game! 🏆</h2>";
+        gameOver = true;
+    } else if (computerScore === 5) {
+        outputbox.innerHTML += "<h2>Mission failed! Computer wins! 🤖</h2>";
+        gameOver = true;
+    }
+
+    if (gameOver) {
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+    }
 }
 
-playGame() ;
+rock.addEventListener("click", function () {
+    playRound("rock", getComputerChoice());
+});
+
+paper.addEventListener("click", function () {
+    playRound("paper", getComputerChoice());
+});
+
+scissors.addEventListener("click", function () {
+    playRound("scissors", getComputerChoice());
+});

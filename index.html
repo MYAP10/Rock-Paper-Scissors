@@ -1,12 +1,77 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>Rock Paper Scissors | Battle Arena</title>
     <link href="index.css" rel="stylesheet">
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <script src="index.js"></script>
+
+    <div id="UI">
+
+        <header>
+            <p class="top-label">⚡ THE ULTIMATE SHOWDOWN ⚡</p>
+            <h1>ROCK <span>PAPER</span> SCISSORS</h1>
+            <p class="subtitle">One battle. Two warriors. One champion.</p>
+        </header>
+
+        <div class="battle-info">
+            <div class="player">
+                <div class="player-icon">🕵️</div>
+                <h2>AGENT 47</h2>
+                <p>THE HUMAN</p>
+            </div>
+
+            <div class="versus">
+                <span>VS</span>
+            </div>
+
+            <div class="player">
+                <div class="player-icon">🤖</div>
+                <h2>THE BOT</h2>
+                <p>THE MACHINE</p>
+            </div>
+        </div>
+
+        <div id="outputbox">
+            <p>🎮 Welcome to the battle arena!</p>
+            <p>Choose your weapon and defeat the machine.</p>
+            <p class="instruction">FIRST TO 5 POINTS WINS 🏆</p>
+        </div>
+
+        <h2 class="choice-heading">⚔️ CHOOSE YOUR WEAPON ⚔️</h2>
+
+        <div id="buttons">
+
+            <button id="rock" aria-label="Choose rock">
+                <span class="weapon">🪨</span>
+                <span class="weapon-name">ROCK</span>
+                <span class="weapon-description">SMASH IT!</span>
+            </button>
+
+            <button id="paper" aria-label="Choose paper">
+                <span class="weapon">📄</span>
+                <span class="weapon-name">PAPER</span>
+                <span class="weapon-description">WRAP IT!</span>
+            </button>
+
+            <button id="scissors" aria-label="Choose scissors">
+                <span class="weapon">✂️</span>
+                <span class="weapon-name">SCISSORS</span>
+                <span class="weapon-description">SLICE IT!</span>
+            </button>
+
+        </div>
+
+        <footer>
+            <p>🔥 NO MERCY. NO EXCUSES. JUST SKILL. 🔥</p>
+            <p class="footer-small">Made for warriors who never give up.</p>
+        </footer>
+
+    </div>
+
 </body>
 </html>
